@@ -33,7 +33,7 @@ template<int, char Name, typename...> struct find_named_impl
 
 template<int Idx, char Name, typename T, typename... R>
 struct find_named_impl<Idx, Name, named_constant<Name, T>, R...>
-: std::integral_constant<int, Idx> { };
+: identity<std::integral_constant<int, Idx>> { };
 
 template<int Idx, char Name, typename H, typename... T>
 struct find_named_impl<Idx, Name, H, T...>

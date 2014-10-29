@@ -17,6 +17,9 @@ struct constant
 
   constexpr T value() const { return val; }
 
+  template<typename... Args>
+  constexpr T operator()(Args... args) const { return value(); }
+
   friend std::ostream& operator<<(std::ostream& out, const constant& self)
   {
     return out << self.val;

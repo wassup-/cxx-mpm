@@ -3,11 +3,14 @@
 
 #include <iostream>
 
-namespace vars = mpm::variables;
+using mpm::variables::a;
+using mpm::variables::b;
+using mpm::variables::x;
+using mpm::variables::A;
 
 int main(int, char**)
 {
-  constexpr auto expr = (vars::a * vars::a) * vars::x + vars::b;
-  constexpr auto res = expr((vars::a = 1.3), (vars::b = 2), (vars::c = 1), (vars::x = 3.5));
+  constexpr auto expr = (a ^ a) * x + b ^ b;
+  constexpr auto res = expr((a = 2), (b = 3), (x = 4));
   std::cout << expr << " = " << res << std::endl;
 }

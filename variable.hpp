@@ -16,7 +16,7 @@ struct variable
   template<typename... NamedVars>
   constexpr typename impl::result_type<Name, NamedVars...>::type operator()(NamedVars... vars) const
   {
-    using index = impl::find_named<Name, NamedVars...>;
+    using index = typename impl::find_named<Name, NamedVars...>::type;
     return std::get<index::value>(std::make_tuple(vars...)).value();
   }
 

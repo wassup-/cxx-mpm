@@ -36,6 +36,33 @@ constexpr static auto x = variable<'x'> { };
 constexpr static auto y = variable<'y'> { };
 constexpr static auto z = variable<'z'> { };
 
+constexpr static auto A = variable<'A'> { };
+constexpr static auto B = variable<'B'> { };
+constexpr static auto C = variable<'C'> { };
+constexpr static auto D = variable<'D'> { };
+constexpr static auto E = variable<'E'> { };
+constexpr static auto F = variable<'F'> { };
+constexpr static auto G = variable<'G'> { };
+constexpr static auto H = variable<'H'> { };
+constexpr static auto I = variable<'I'> { };
+constexpr static auto J = variable<'J'> { };
+constexpr static auto K = variable<'K'> { };
+constexpr static auto L = variable<'L'> { };
+constexpr static auto M = variable<'M'> { };
+constexpr static auto N = variable<'N'> { };
+constexpr static auto O = variable<'O'> { };
+constexpr static auto P = variable<'P'> { };
+constexpr static auto Q = variable<'Q'> { };
+constexpr static auto R = variable<'R'> { };
+constexpr static auto S = variable<'S'> { };
+constexpr static auto T = variable<'T'> { };
+constexpr static auto U = variable<'U'> { };
+constexpr static auto V = variable<'V'> { };
+constexpr static auto W = variable<'W'> { };
+constexpr static auto X = variable<'X'> { };
+constexpr static auto Y = variable<'Y'> { };
+constexpr static auto Z = variable<'Z'> { };
+
 }
 
 }
