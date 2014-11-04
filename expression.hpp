@@ -9,7 +9,7 @@ namespace mpm
 {
 
 template<typename Derived>
-struct expression
+struct Expression
 {
 public:
   template<typename... Args>
@@ -19,7 +19,7 @@ public:
     return static_cast<const Derived&>(*this)(args...);
   }
 
-  friend std::ostream& operator<<(std::ostream& out, const expression& self)
+  friend std::ostream& operator<<(std::ostream& out, const Expression& self)
   {
     return out << static_cast<const Derived&>(self);
   }

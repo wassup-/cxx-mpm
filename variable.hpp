@@ -11,7 +11,7 @@ namespace mpm
 {
 
 template<char Name>
-struct variable
+struct Variable
 {
   template<typename... NamedVars>
   constexpr typename impl::result_type<Name, NamedVars...>::type operator()(NamedVars... vars) const
@@ -21,14 +21,14 @@ struct variable
   }
 
   template<typename T>
-  constexpr named_constant<Name, T> operator=(T v) const
+  constexpr Named_constant<Name, T> operator=(T v) const
   {
     return { v };
   }
 
   constexpr char name() const { return Name; }
 
-  friend std::ostream& operator<<(std::ostream& out, const variable& self)
+  friend std::ostream& operator<<(std::ostream& out, const Variable& self)
   {
     return out << self.name();
   }

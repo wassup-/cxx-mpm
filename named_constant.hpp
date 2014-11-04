@@ -7,9 +7,9 @@ namespace mpm
 {
 
 template<char Name, typename T>
-struct named_constant : constant<T>
+struct Named_constant : Constant<T>
 {
-  using constant<T>::constant;
+  using Constant<T>::Constant;
 
   constexpr char name() const { return Name; }
 };

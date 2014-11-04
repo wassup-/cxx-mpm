@@ -6,7 +6,7 @@
 namespace mpm
 {
 
-template<char, typename> struct named_constant;
+template<char, typename> struct Named_constant;
 
 namespace impl
 {
@@ -18,7 +18,7 @@ template<char Name, typename...> struct result_type_impl
 : identity<variable_not_set<Name>> { };
 
 template<char Name, typename T, typename... R>
-struct result_type_impl<Name, named_constant<Name, T>, R...>
+struct result_type_impl<Name, Named_constant<Name, T>, R...>
 : identity<T> { };
 
 template<char Name, typename H, typename... T>
@@ -32,7 +32,7 @@ template<int, char Name, typename...> struct find_named_impl
 : identity<variable_not_set<Name>> { };
 
 template<int Idx, char Name, typename T, typename... R>
-struct find_named_impl<Idx, Name, named_constant<Name, T>, R...>
+struct find_named_impl<Idx, Name, Named_constant<Name, T>, R...>
 : identity<std::integral_constant<int, Idx>> { };
 
 template<int Idx, char Name, typename H, typename... T>

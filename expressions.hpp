@@ -26,9 +26,9 @@ constexpr Base pow(Base base, Exp exp, Base result = 1)
 }
 
 template<typename LExpr, typename RExpr>
-struct expr_add : expression<expr_add<LExpr, RExpr>>
+struct Expr_add : Expression<Expr_add<LExpr, RExpr>>
 {
-  constexpr expr_add(LExpr l, RExpr r)
+  constexpr Expr_add(LExpr l, RExpr r)
   : left(l), right(r)
   { }
 
@@ -39,7 +39,7 @@ struct expr_add : expression<expr_add<LExpr, RExpr>>
     return left(args...) + right(args...);
   }
 
-  friend std::ostream& operator<<(std::ostream& out, const expr_add& self)
+  friend std::ostream& operator<<(std::ostream& out, const Expr_add& self)
   {
     return out << self.left << " + " << self.right;
   }
@@ -49,9 +49,9 @@ struct expr_add : expression<expr_add<LExpr, RExpr>>
 };
 
 template<typename LExpr, typename RExpr>
-struct expr_sub : expression<expr_sub<LExpr, RExpr>>
+struct Expr_sub : Expression<Expr_sub<LExpr, RExpr>>
 {
-  constexpr expr_sub(LExpr l, RExpr r)
+  constexpr Expr_sub(LExpr l, RExpr r)
   : left(l), right(r)
   { }
 
@@ -62,7 +62,7 @@ struct expr_sub : expression<expr_sub<LExpr, RExpr>>
     return left(args...) + right(args...);
   }
 
-  friend std::ostream& operator<<(std::ostream& out, const expr_sub& self)
+  friend std::ostream& operator<<(std::ostream& out, const Expr_sub& self)
   {
     return out << self.left << " - " << self.right;
   }
@@ -72,9 +72,9 @@ struct expr_sub : expression<expr_sub<LExpr, RExpr>>
 };
 
 template<typename LExpr, typename RExpr>
-struct expr_mul : expression<expr_mul<LExpr, RExpr>>
+struct Expr_mul : Expression<Expr_mul<LExpr, RExpr>>
 {
-  constexpr expr_mul(LExpr l, RExpr r)
+  constexpr Expr_mul(LExpr l, RExpr r)
   : left(l), right(r)
   { }
 
@@ -85,7 +85,7 @@ struct expr_mul : expression<expr_mul<LExpr, RExpr>>
     return left(args...) * right(args...);
   }
 
-  friend std::ostream& operator<<(std::ostream& out, const expr_mul& self)
+  friend std::ostream& operator<<(std::ostream& out, const Expr_mul& self)
   {
     return out << self.left << " * " << self.right;
   }
@@ -95,9 +95,9 @@ struct expr_mul : expression<expr_mul<LExpr, RExpr>>
 };
 
 template<typename LExpr, typename RExpr>
-struct expr_div : expression<expr_div<LExpr, RExpr>>
+struct Expr_div : Expression<Expr_div<LExpr, RExpr>>
 {
-  constexpr expr_div(LExpr l, RExpr r)
+  constexpr Expr_div(LExpr l, RExpr r)
   : left(l), right(r)
   { }
 
@@ -108,7 +108,7 @@ struct expr_div : expression<expr_div<LExpr, RExpr>>
     return left(args...) + right(args...);
   }
 
-  friend std::ostream& operator<<(std::ostream& out, const expr_div& self)
+  friend std::ostream& operator<<(std::ostream& out, const Expr_div& self)
   {
     return out << self.left << " / " << self.right;
   }
@@ -118,9 +118,9 @@ struct expr_div : expression<expr_div<LExpr, RExpr>>
 };
 
 template<typename LExpr, typename RExpr>
-struct expr_pow : expression<expr_pow<LExpr, RExpr>>
+struct Expr_pow : Expression<Expr_pow<LExpr, RExpr>>
 {
-  constexpr expr_pow(LExpr l, RExpr r)
+  constexpr Expr_pow(LExpr l, RExpr r)
   : left(l), right(r)
   { }
 
@@ -131,7 +131,7 @@ struct expr_pow : expression<expr_pow<LExpr, RExpr>>
     return impl::pow(left(args...), right(args...));
   }
 
-  friend std::ostream& operator<<(std::ostream& out, const expr_pow& self)
+  friend std::ostream& operator<<(std::ostream& out, const Expr_pow& self)
   {
     return out << self.left << "^" << self.right;
   }
@@ -146,7 +146,7 @@ template<typename T>
 struct mpm_expression
 {
   using type = typename std::conditional<std::is_arithmetic<T>::value,
-                                         constant<T>,
+                                         Constant<T>,
                                          T>::type;
 
   constexpr mpm_expression(type x) : expr(x) { }
@@ -164,35 +164,35 @@ template<template<typename, typename> class Expr, typename Left, typename Right>
 using expression_t = typename as_expression<Expr, Left, Right>::type;
 
 template<typename Left, typename Right>
-constexpr expression_t<expressions::expr_add, Left, Right>
+constexpr expression_t<expressions::Expr_add, Left, Right>
 operator+(Left l, Right r)
 {
   return { l, r };
 }
 
 template<typename Left, typename Right>
-constexpr expression_t<expressions::expr_sub, Left, Right>
+constexpr expression_t<expressions::Expr_sub, Left, Right>
 operator-(Left l, Right r)
 {
   return { l, r };
 }
 
 template<typename Left, typename Right>
-constexpr expression_t<expressions::expr_mul, Left, Right>
+constexpr expression_t<expressions::Expr_mul, Left, Right>
 operator*(Left l, Right r)
 {
   return { l, r };
 }
 
 template<typename Left, typename Right>
-constexpr expression_t<expressions::expr_div, Left, Right>
+constexpr expression_t<expressions::Expr_div, Left, Right>
 operator/(Left l, Right r)
 {
   return { l, r };
 }
 
 template<typename Left, typename Right>
-constexpr expression_t<expressions::expr_pow, Left, Right>
+constexpr expression_t<expressions::Expr_pow, Left, Right>
 operator^(Left l, Right r)
 {
   return { l, r };

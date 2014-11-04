@@ -9,9 +9,9 @@ namespace mpm
 {
 
 template<typename T>
-struct constant
+struct Constant
 {
-  constexpr constant(T v)
+  constexpr Constant(T v)
   : val(v)
   { }
 
@@ -20,7 +20,7 @@ struct constant
   template<typename... Args>
   constexpr T operator()(Args... args) const { return value(); }
 
-  friend std::ostream& operator<<(std::ostream& out, const constant& self)
+  friend std::ostream& operator<<(std::ostream& out, const Constant& self)
   {
     return out << self.val;
   }
