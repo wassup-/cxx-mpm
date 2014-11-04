@@ -2,6 +2,7 @@
 #define MPM_EXPRESSION_HPP_
 
 #include "impl.hpp"
+#include "predefs.hpp"
 
 #include <iostream>
 
@@ -24,6 +25,9 @@ public:
     return out << static_cast<const Derived&>(self);
   }
 };
+
+template<typename T>
+struct is_expression<Expression<T>> : std::true_type { };
 
 }
 

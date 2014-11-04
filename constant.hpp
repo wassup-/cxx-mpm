@@ -2,6 +2,7 @@
 #define MPM_CONSTANT_HPP_
 
 #include "impl.hpp"
+#include "predefs.hpp"
 
 #include <iostream>
 
@@ -27,6 +28,12 @@ struct Constant
 
   const T val;
 };
+
+template<typename T>
+struct is_constant<Constant<T>> : std::true_type { };
+
+template<typename T>
+struct is_expression<Constant<T>> : std::true_type { };
 
 }
 

@@ -63,6 +63,8 @@ constexpr static auto X = Variable<'X'> { };
 constexpr static auto Y = Variable<'Y'> { };
 constexpr static auto Z = Variable<'Z'> { };
 
+constexpr static auto _ = Variable<'_'> { };
+
 }
 
 }
