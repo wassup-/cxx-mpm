@@ -116,7 +116,7 @@ struct Expr_sin : Expression<Expr_sin<Expr>>
   template<typename... Args>
   constexpr double operator()(Args... args) const
   {
-    return impl::sin_solver<int>()(expr(args...));
+    return impl::sin_solver<decltype(expr(args...))>()(expr(args...));
   }
 
   friend std::ostream& operator<<(std::ostream& out, const Expr_sin& self)
