@@ -36,6 +36,19 @@ template<char Name, typename Left, typename Right>
 struct inverse_expression<Name, Expr_div<Left, Right>>
 : impl::identity<Expr_mul<Left, Right>> { };
 
+template<char Name, typename T>
+struct inverse_expression<Name, Expr_inv<T>>
+: impl::identity<T> { };
+
+template<char Name, typename T>
+using inverse_expression_t = typename inverse_expression<Name, T>::type;
+
+template<typename Expression, char Name>
+constexpr inverse_expression_t<Name, Expression> solve_for(Expression expr, Variable<Name> var)
+{
+  return { { } };
+}
+
 }
 
 #endif
