@@ -32,7 +32,7 @@ struct as_expression
 template<template<typename, typename> class Expr, typename Left, typename Right>
 using expression_t = typename as_expression<Expr, Left, Right>::type;
 
-}
+} // namespace mpm
 
 #include "expressions/add.hpp"
 #include "expressions/div.hpp"
@@ -41,6 +41,7 @@ using expression_t = typename as_expression<Expr, Left, Right>::type;
 #include "expressions/mul.hpp"
 #include "expressions/neq.hpp"
 #include "expressions/pow.hpp"
+#include "expressions/sin.hpp"
 #include "expressions/sub.hpp"
 
 #endif

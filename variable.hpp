@@ -22,13 +22,13 @@ struct Variable
     return std::get<index::value>(std::make_tuple(vars...)).value();
   }
 
-  template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value>::type>
+  template<typename T, typename = typename std::enable_if<!is_expression<T>::value>::type>
   constexpr Named_constant<Name, T> operator=(T v) const
   {
     return { v };
   }
 
-  template<typename Expression, typename = typename std::enable_if<!std::is_arithmetic<Expression>::value>::type>
+  template<typename Expression, typename = typename std::enable_if<is_expression<Expression>::value>::type>
   constexpr Named_expression<Name, Expression> operator=(Expression x) const
   {
     return { x };
@@ -44,6 +44,9 @@ struct Variable
 
 template<char Name>
 struct is_expression<Variable<Name>> : std::true_type { };
+
+template<char Name>
+struct is_named<Variable<Name>> : std::true_type { };
 
 template<char Name>
 struct is_variable<Variable<Name>> : std::true_type { };

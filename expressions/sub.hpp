@@ -19,7 +19,7 @@ struct Expr_sub : Expression<Expr_sub<LExpr, RExpr>>
   constexpr auto operator()(Args... args) const
   -> decltype(::mpm::impl::cref_declval<LExpr>()(args...) + ::mpm::impl::cref_declval<RExpr>()(args...))
   {
-    return left(args...) + right(args...);
+    return left(args...) - right(args...);
   }
 
   friend std::ostream& operator<<(std::ostream& out, const Expr_sub& self)
