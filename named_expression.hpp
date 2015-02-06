@@ -10,7 +10,9 @@ namespace mpm
 template<char Name, typename T>
 struct Named_expression : T
 {
-  constexpr Named_expression(T x) : T(x) { }
+  constexpr Named_expression(T x)
+  : T{ x }
+  { }
 
   constexpr char name() const { return Name; }
 
@@ -32,6 +34,6 @@ struct is_named<Named_expression<Name, T>> : std::true_type { };
 template<char Name, typename T>
 struct is_variable<Named_expression<Name, T>> : is_variable<T> { };
 
-}
+} // namespace mpm
 
 #endif

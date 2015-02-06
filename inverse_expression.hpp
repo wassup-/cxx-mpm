@@ -49,6 +49,6 @@ constexpr inverse_expression_t<Name, Expression> solve_for(Expression expr, Vari
   return { { } };
 }
 
-}
+} // namespace mpm
 
 #endif

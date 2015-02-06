@@ -65,8 +65,8 @@ constexpr static auto Z = Variable<'Z'> { };
 
 constexpr static auto _ = Variable<'_'> { };
 
-}
+} // namespace variables
 
-}
+} // namespace mpm
 
 #endif

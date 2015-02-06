@@ -10,19 +10,19 @@ namespace mpl
 {
 
 template<typename H, typename... T>
-struct and_ : std::conditional<H::value, and_<T...>, std::false_type>::type { };
+struct and_ : conditional_t<H, and_<T...>, std::false_type> { };
 
 template<typename H>
-struct and_<H> : std::conditional<H::value, std::true_type, std::false_type>::type { };
+struct and_<H> : conditional_t<H, std::true_type, std::false_type> { };
 
 template<typename H, typename... T>
-struct or_ : std::conditional<H::value, std::true_type, or_<T...>>::type { };
+struct or_ : conditional_t<H, std::true_type, or_<T...>> { };
 
 template<typename H>
-struct or_<H> : std::conditional<H::value, std::true_type, std::false_type>::type { };
+struct or_<H> : conditional_t<H, std::true_type, std::false_type> { };
 
 template<typename T>
-struct not_ : std::conditional<T::value, std::false_type, std::true_type>::type { };
+struct not_ : conditional_t<T, std::false_type, std::true_type> { };
 
 template<typename...> struct type_sequence { };
 template<typename T, T...> struct integer_sequence { };
@@ -48,7 +48,7 @@ template<typename Val, typename Prev, typename Cur, typename Next, typename... R
 struct upper_bound_impl<Val, Prev, Cur, Next, Rest...>
 : std::conditional<(Next::value >= Cur::value), Next, upper_bound_impl<Val, Cur, Next, Rest...>> { };
 
-}
+} // namespace impl
 
 template<typename V, typename... Vs>
 struct lower_bound : impl::lower_bound_impl<V, Vs...>::type { };
@@ -56,8 +56,8 @@ struct lower_bound : impl::lower_bound_impl<V, Vs...>::type { };
 template<typename V, typename... Vs>
 struct upper_bound : impl::upper_bound_impl<V, Vs...>::type { };
 
-}
+} // namespace mpl
 
-}
+} // namespace mpm
 
 #endif

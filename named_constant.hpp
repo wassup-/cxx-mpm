@@ -24,6 +24,6 @@ struct is_expression<Named_constant<Name, T>> : std::true_type { };
 template<char Name, typename T>
 struct is_named<Named_constant<Name, T>> : std::true_type { };
 
-}
+} // namespace mpm
 
 #endif

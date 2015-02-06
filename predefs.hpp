@@ -9,6 +9,6 @@ template<typename> struct is_expression : std::false_type { };
 template<typename> struct is_named : std::false_type { };
 template<typename> struct is_variable : std::false_type { };
 
-}
+} // namespace mpm
 
 #endif

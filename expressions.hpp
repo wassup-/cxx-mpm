@@ -4,6 +4,7 @@
 #include "expression.hpp"
 #include "impl.hpp"
 #include "mpl.hpp"
+#include "type_traits.hpp"
 
 #include <iostream>
 
@@ -14,11 +15,11 @@ namespace mpm
 template<typename T>
 struct mpm_expression
 {
-  using type = typename std::conditional<is_expression<T>::value,
-                                         T,
-                                         Constant<T>>::type;
+  using type = conditional_t<is_expression<T>, T, Constant<T>>;
 
-  constexpr mpm_expression(type x) : expr(x) { }
+  constexpr mpm_expression(type x)
+  : expr{ x }
+  { }
 
   type expr;
 };

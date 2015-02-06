@@ -3,6 +3,7 @@
 
 #include "impl.hpp"
 #include "predefs.hpp"
+#include "type_traits.hpp"
 
 #include <iostream>
 
@@ -66,14 +67,14 @@ struct expression_printer
   Expression expr;
 };
 
-}
+} // namespace printers
 
-template<typename Expression, typename = typename std::enable_if<is_expression<Expression>::value>::type>
+template<typename Expression, typename = enable_if_t<is_expression<Expression>>>
 constexpr printers::expression_printer<Expression> make_expression_printer(Expression expr)
 {
   return { expr };
 }
 
-}
+} // namespace mpm
 
 #endif

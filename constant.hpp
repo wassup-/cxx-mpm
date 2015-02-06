@@ -13,7 +13,7 @@ template<typename T>
 struct Constant
 {
   constexpr Constant(T v)
-  : val(v)
+  : val{ v }
   { }
 
   constexpr T value() const { return val; }
@@ -35,6 +35,6 @@ struct is_constant<Constant<T>> : std::true_type { };
 template<typename T>
 struct is_expression<Constant<T>> : std::true_type { };
 
-}
+} // namespace mpm
 
 #endif

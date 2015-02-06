@@ -49,8 +49,8 @@ struct find_named
 template<typename T>
 const T& cref_declval();
 
-}
+} // namespace impl
 
-}
+} // namespace mpm
 
 #endif
