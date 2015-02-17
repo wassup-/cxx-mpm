@@ -6,11 +6,11 @@
 using mpm::variables::a;
 using mpm::variables::b;
 using mpm::variables::c;
-using mpm::variables::_;
 
 int main(int, char**)
 {
-  constexpr auto expr = sin(a);
-  constexpr auto res = expr((a = 1));
+  constexpr auto expr = (a = b + c);
+  constexpr auto res = expr((b = 1), (c = 2));
+
   std::cout << make_expression_printer(expr) << " = " << res << std::endl;
 }
