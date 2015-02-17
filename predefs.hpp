@@ -1,6 +1,8 @@
 #ifndef MPM_PREDEFS_HPP_
 #define MPM_PREDEFS_HPP_
 
+#include <type_traits>
+
 namespace mpm
 {
 
