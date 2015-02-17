@@ -63,6 +63,7 @@ constexpr static auto X = Variable<'X'> { };
 constexpr static auto Y = Variable<'Y'> { };
 constexpr static auto Z = Variable<'Z'> { };
 
+// This variable actually denotes the result of an expression
 constexpr static auto _ = Variable<'_'> { };
 
 } // namespace variables
