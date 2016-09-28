@@ -4,6 +4,7 @@
 #include "../expression.hpp"
 #include "../impl.hpp"
 #include "../mpl.hpp"
+#include "../mpm.hpp"
 
 #include <cmath>
 
@@ -33,16 +34,30 @@ struct lower_bound : lower_bound_impl<V, Vs...>::type { };
 template<typename V, typename... Vs>
 struct upper_bound : upper_bound_impl<V, Vs...>::type { };
 
+template<typename>
+struct sine_lookup_table;
+
 template<typename T>
-struct sin_solver
+struct sine_lookup_entry
 {
   template<int Idx, T Val>
-  struct entry
+  struct e
   {
     using index = std::integral_constant<int, Idx>;
     using value = std::integral_constant<T, Val>;
   };
+};
 
+template<>
+struct sine_lookup_table<int>
+{
+  using entry = sine_lookup_entry<int>;
+  using table = mpl::type_sequence<entry::e<0, 0>, entry::e<2, 4>, entry::e<5, 10>, entry::e<7, 12>>;
+};
+
+template<typename T>
+struct sin_solver
+{
   struct lower_bound_not_found { };
   struct upper_bound_not_found { };
 
@@ -99,7 +114,7 @@ struct sin_solver
 
   constexpr double operator()(T v) const
   {
-    using lookup_table = mpl::type_sequence<entry<0, 0>, entry<2, 4>, entry<5, 10>, entry<7, 12>>;
+    using lookup_table = typename sine_lookup_table<T>::table;
     return solve_lb(v, lookup_table{});
   }
 };

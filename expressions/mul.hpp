@@ -47,6 +47,6 @@ operator*(Left l, Right r)
   return { l, r };
 }
 
-}
+} // namespace mpm
 
 #endif

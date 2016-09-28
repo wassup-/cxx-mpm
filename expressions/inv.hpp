@@ -39,6 +39,6 @@ struct is_constant<Expr_inv<Expr>> : is_constant<Expr> { };
 template<typename Expr>
 struct is_variable<Expr_inv<Expr>> : is_variable<Expr> { };
 
-}
+} // namespace mpm
 
 #endif

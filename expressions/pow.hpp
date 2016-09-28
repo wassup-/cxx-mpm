@@ -60,6 +60,13 @@ operator^(Left l, Right r)
   return { l, r };
 }
 
+template<typename Left, typename Right>
+constexpr expression_t<Expr_pow, Left, Right>
+pow(Left l, Right r)
+{
+  return { l, r };
 }
+
+} // namespace mpm
 
 #endif
